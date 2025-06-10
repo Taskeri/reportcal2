@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AZN Report</title>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    img.logo {
+      height: 100px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      margin-top: 0;
+      color: #005c99;
+    }
+    .timestamp {
+      color: gray;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 10px 0 5px;
+    }
+    select, input, textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+    button {
+      background-color: #0077cc;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+    #logout {
+      background-color: #ff4d4d;
+      float: left;
+      font-size: 14px;
+      padding: 6px 14px;
+      margin: 0 0 10px 10px;
+    }
+    @media screen and (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+      img.logo {
+        height: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button id="logout">התנתק</button>
+    <img src="https://cdn.glitch.global/a6074e43-b9f0-4c21-91b7-1a4eb6629d76/ATSMON%20logo2.png?v=1748462841669" class="logo" alt="AZN Logo" />
+    <h2 id="welcome">שלום</h2>
+    <div class="timestamp" id="timestamp"></div>
+    <form id="report-form">
+      <label for="product">בחר מוצר</label>
+      <select id="product"></select>
+      <label for="size">בחר מידה</label>
+      <select id="size"></select>
+      <label for="color">בחר צבע</label>
+      <select id="color"></select>
+      <label for="workers">בחר עובדים</label>
+      <select id="workers" multiple></select>
+      <label for="quantity">כמות</label>
+      <input type="number" id="quantity" min="1" />
+      <label for="note">הערות</label>
+      <textarea id="note" rows="3"></textarea>
+      <button type="submit">שלח דיווח</button>
+      <div id="message"></div>
+    </form>
+  </div>
+  <script src="/report.js"></script>
+  <script>
+    document.getElementById("logout").addEventListener("click", () => {
+      sessionStorage.clear();
+      window.location.href = "/index.html";
+    });
+    const ts = document.getElementById("timestamp");
+    const now = new Date().toLocaleString("he-IL", { timeZone: "Asia/Jerusalem" });
+    ts.textContent = `נכון ל־${now}`;
+  </script>
+</body>
+</html>
